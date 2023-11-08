@@ -2,6 +2,16 @@ import streamlit as st
 import mysql.connector
 import os
 
+st.write('''<style>
+
+[data-testid="column"] {
+    width: calc(33.3333% - 1rem) !important;
+    flex: 1 1 calc(33.3333% - 1rem) !important;
+    min-width: calc(33% - 1rem) !important;
+}
+
+</style>''', unsafe_allow_html=True)
+
 mydb = mysql.connector.connect(
     host=os.getenv("DB_HOST"),
     user=os.getenv("DB_USERNAME"),
@@ -23,16 +33,16 @@ with col1:
     st.subheader('Prestigio')
 
 with col2:
-    resultado1 = cursor.execute('SELECT quantidade FROM estoque where id_produto = "1"')
+    cursor.execute('SELECT quantidade FROM estoque where id_produto = "1"')
     resultado1 = cursor.fetchall()
 
-    resultado2 = cursor.execute('SELECT quantidade FROM estoque where id_produto = "2"')
+    cursor.execute('SELECT quantidade FROM estoque where id_produto = "2"')
     resultado2 = cursor.fetchall()
 
-    resultado3 = cursor.execute('SELECT quantidade FROM estoque where id_produto = "3"')
+    cursor.execute('SELECT quantidade FROM estoque where id_produto = "3"')
     resultado3 = cursor.fetchall()
 
-    resultado4 = cursor.execute('SELECT quantidade FROM estoque where id_produto = "4"')
+    cursor.execute('SELECT quantidade FROM estoque where id_produto = "4"')
     resultado4 = cursor.fetchall()
     chars = "'),([]"
     var1 = str(resultado1).translate(str.maketrans('', '', chars))
