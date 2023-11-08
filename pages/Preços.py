@@ -68,7 +68,7 @@ with col3:
 
 
 if st.button('Cadastrar Produto'):
-    cursor.execute("INSERT INTO produtos(nome, quantidade,valor) VALUES (%s,%s,%s)", (nome, quantidade, valor))
+    cursor.execute("INSERT INTO produto(nome, quantidade,valor) VALUES (%s,%s,%s)", (nome, quantidade, valor))
     mydb.commit()
     st.success('Produto Cadastrado com Sucesso')
 st.write('---')
