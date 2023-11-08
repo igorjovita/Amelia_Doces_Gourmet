@@ -39,7 +39,7 @@ with col1:
 with col2:
     cursor.execute("SELECT nome FROM produto")
     produto = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
-    quantidade_prod = st.text_input('Quantidade').replace(',', '.')
+    quantidade_prod = st.text_input('Quantidade',key='quantidade1').replace(',', '.')
     valor_prod = st.text_input('Valor')
 with col3:
     nome_prod = st.selectbox('Produto', produto)
