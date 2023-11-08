@@ -62,7 +62,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
     nome = st.text_input('Nome do Produto').replace(' ', '_').capitalize()
 with col2:
-    quantidade = st.text_input('Quantidade da Embalagem')
+    quantidade = st.text_input('Quantidade')
 with col3:
     valor = str(st.text_input('Preço do Produto')).replace(',', '.')
 
