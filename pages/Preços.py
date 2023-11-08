@@ -37,7 +37,7 @@ with col1:
     mercado = st.text_input('Mercado')
 
 with col2:
-    cursor.execute("SELECT nome FROM produtos")
+    cursor.execute("SELECT nome FROM produto")
     produto = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
     quantidade_prod = st.text_input('Quantidade').replace(',', '.')
     valor_prod = st.text_input('Valor')
@@ -45,11 +45,11 @@ with col3:
     nome_prod = st.selectbox('Produto', produto)
 
 
-cursor.execute(f"SELECT id from produtos where nome = '{nome_prod}'")
+cursor.execute(f"SELECT id from produto where nome = '{nome_prod}'")
 id_prod = str(cursor.fetchall()).translate(str.maketrans('', '', chars))
 
 if st.button('Lançar no Sistema'):
-    cursor.execute("insert into preço (data,id_prod, mercado, quantidade, valor) values (%s, %s, %s, %s,%s) ",
+    cursor.execute("insert into preço (data_compra,id_produto, mercado, quantidade, valor) values (%s, %s, %s, %s,%s) ",
                    (data, id_prod, mercado, quantidade_prod, valor_prod))
     mydb.commit()
     st.success('Lançamento Feito!')
@@ -78,8 +78,8 @@ st.subheader('Registro de Preços')
 nome_registro = st.selectbox('Lista', produto)
 if st.button('Pesquisar no sistema'):
     cursor.execute(
-        f"select preço.data,produtos.nome,preço.mercado, preço.quantidade, preço.valor from produtos join preço on "
-        f"preço.id_prod = produtos.id where produtos.nome ='{nome_registro}'")
+        f"select preço.data_produto, produto.nome,preço.mercado, preço.quantidade, preço.valor from produto join preço on "
+        f"preço.id_prod = produto.id where produto.nome ='{nome_registro}'")
     dados = cursor.fetchall()
 
     df = pd.DataFrame(dados, columns=['Data', 'Produto', 'Mercado', 'Quantidade', 'Preço'])

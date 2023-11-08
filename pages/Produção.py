@@ -16,7 +16,7 @@ cursor = mydb.cursor()
 st.title('Produção')
 data = st.date_input('Data da Produção', format='DD/MM/YYYY')
 
-cursor.execute("SELECT nome FROM produtos")
+cursor.execute("SELECT nome FROM produto")
 chars = "'),([]"
 lista = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
 produto = st.selectbox('Produto:', options=lista)
@@ -37,12 +37,12 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     if st.button('Lançar Produção'):
-        sql = 'insert into entrada(id_produto, quantidade, data_entrada) values (%s, %s, %s) '
-        value = (produto, quantidade, data)
-        cursor.execute(sql, value)
         mydb.commit()
+        cursor.execute("insert into entrada(id_produto, quantidade, data_entrada) values (%s, %s, %s) "(produto, quantidade, data))
+        mydb.commit()
+        mydb.close()
         st.success('Produção lançada no sistema')
-        st.rerun()
+
 
 
 def click_button():
@@ -50,8 +50,10 @@ def click_button():
 
 
 with col2:
+    mydb.connect()
     cursor.execute("SELECT * FROM entrada")
     entrada = cursor.fetchall()
+    mydb.close()
 
     if 'button' not in st.session_state:
         st.session_state.button = False

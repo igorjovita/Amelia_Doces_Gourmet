@@ -23,7 +23,7 @@ with col2:
     valor = st.text_input('Valor:')
 
 with col3:
-    cursor.execute("SELECT nome FROM produtos")
+    cursor.execute("SELECT nome FROM produto")
     chars = "'),([]"
     lista = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
     produto = st.selectbox('Produto:', options=lista)
