@@ -49,9 +49,9 @@ with col2:
     var2 = str(resultado2).translate(str.maketrans('', '', chars))
     var3 = str(resultado3).translate(str.maketrans('', '', chars))
     var4 = str(resultado4).translate(str.maketrans('', '', chars))
-    st.subheader(f'{var1} Unidades')
-    st.subheader(f'{var2} Unidades')
-    st.subheader(f'{var3} Unidades')
-    st.subheader(f'{var4} Unidades')
+    st.subheader(f'{var1}')
+    st.subheader(f'{var2}')
+    st.subheader(f'{var3}')
+    st.subheader(f'{var4}')
 
 
