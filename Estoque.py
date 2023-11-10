@@ -41,7 +41,7 @@ for sabor in sabores:
         cursor.execute(f"SELECT id FROM sabores WHERE nome = '{sabor}'")
         id_produto = str(cursor.fetchone()).translate(str.maketrans('', '', chars))
         cursor.execute(f"SELECT quantidade FROM estoque WHERE id_produto = {id_produto}")
-        quantidade = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
+        quantidade = str(cursor.fetchone()).translate(str.maketrans('', '', chars))
         mydb.close()
         st.subheader(quantidade)
 
