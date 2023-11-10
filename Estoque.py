@@ -30,7 +30,7 @@ col1, col2 = st.columns(2)
 
 mydb.connect()
 cursor.execute("SELECT nome FROM sabores")
-sabores = str(cursor.fetchall()).translate(str.maketrans('', '', chars2)).split(',')
+sabores = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
 mydb.close()
 
 for sabor in sabores:
