@@ -38,7 +38,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
     if st.button('Lançar Produção'):
         mydb.commit()
-        cursor.execute("insert into entrada(id_produto, quantidade, data_entrada) values (%s, %s, %s) "(produto, quantidade, data))
+        cursor.execute("insert into entrada(id_produto, quantidade, data_entrada) values (%s, %s, %s) ",(produto, quantidade, data))
         mydb.commit()
         mydb.close()
         st.success('Produção lançada no sistema')
