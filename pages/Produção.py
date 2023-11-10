@@ -28,7 +28,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     if st.button('Lançar Produção'):
-        cursor.execute(f"SELECT id from sabores where nome = {sabor} ")
+        cursor.execute(f"SELECT id from sabores where nome = '{sabor}' ")
         id_produto = str(cursor.fetchone()).translate(str.maketrans('', '', chars))
 
         cursor.execute("insert into entrada(id_produto, quantidade, data_entrada) values (%s, %s, %s) ", (id_produto, quantidade, data))
