@@ -45,32 +45,4 @@ for sabor in sabores:
         mydb.close()
         st.subheader(quantidade)
 
-# with col1:
-#     st.subheader('Ninho')
-#     st.subheader('Nesquik')
-#     st.subheader('Ferrero Rocher')
-#     st.subheader('Prestigio')
-#
-# with col2:
-#     cursor.execute('SELECT quantidade FROM estoque where id_produto = "1"')
-#     resultado1 = cursor.fetchall()
-#
-#     cursor.execute('SELECT quantidade FROM estoque where id_produto = "2"')
-#     resultado2 = cursor.fetchall()
-#
-#     cursor.execute('SELECT quantidade FROM estoque where id_produto = "3"')
-#     resultado3 = cursor.fetchall()
-#
-#     cursor.execute('SELECT quantidade FROM estoque where id_produto = "4"')
-#     resultado4 = cursor.fetchall()
-#     chars = "'),([]"
-#     var1 = str(resultado1).translate(str.maketrans('', '', chars))
-#     var2 = str(resultado2).translate(str.maketrans('', '', chars))
-#     var3 = str(resultado3).translate(str.maketrans('', '', chars))
-#     var4 = str(resultado4).translate(str.maketrans('', '', chars))
-#     st.subheader(f'{var1}')
-#     st.subheader(f'{var2}')
-#     st.subheader(f'{var3}')
-#     st.subheader(f'{var4}')
-
 
