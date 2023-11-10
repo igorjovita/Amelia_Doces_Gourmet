@@ -23,29 +23,17 @@ with col2:
     valor = st.text_input('Valor:')
 
 with col3:
-    cursor.execute("SELECT nome FROM produto")
+    cursor.execute("SELECT nome FROM sabores")
     chars = "'),([]"
     lista = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
-    produto = st.selectbox('Produto:', options=lista)
-if produto == 'Ninho':
-    produto = '1'
+    sabor = st.selectbox('Sabor:', options=lista)
 
-if produto == 'Nesquik':
-    produto = '2'
-
-if produto == 'Ferrero Rocher':
-    produto = '3'
-
-if produto == 'Prestigio':
-    produto = '4'
-
-
-
-
+    cursor.execute(f"Select id from sabores where nome = '{sabor}'")
+    id_produto = str(cursor.fetchone()).translate(str.maketrans('', '', chars))
 
 if st.button('Lançar Venda'):
     mydb.connect()
-    cursor.execute("insert into saida(id_produto, quantidade, data_saida, valor, tipo) values (%s, %s, %s, %s, %s)", (produto, quantidade, data, valor, tipo))
+    cursor.execute("insert into saida(id_produto, quantidade, data_saida, valor, tipo) values (%s, %s, %s, %s, %s)",
+                   (id_produto, quantidade, data, valor, tipo))
     mydb.commit()
     st.success('Venda lançada no sistema')
-

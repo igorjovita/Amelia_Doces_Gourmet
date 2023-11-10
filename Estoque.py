@@ -21,37 +21,56 @@ mydb = mysql.connector.connect(
     ssl_verify_identity=False,
     ssl_ca=r"C:\users\acqua\downloads\cacert-2023-08-22.pem")
 cursor = mydb.cursor()
+chars = "'),([]"
+chars2 = "')([]"
 
 st.title('Amelia Doces Gourmet')
 
 col1, col2 = st.columns(2)
 
-with col1:
-    st.subheader('Ninho')
-    st.subheader('Nesquik')
-    st.subheader('Ferrero Rocher')
-    st.subheader('Prestigio')
+mydb.connect()
+cursor.execute("SELECT nome FROM sabores")
+sabores = str(cursor.fetchall()).translate(str.maketrans('', '', chars2)).split(',')
+mydb.close()
 
-with col2:
-    cursor.execute('SELECT quantidade FROM estoque where id_produto = "1"')
-    resultado1 = cursor.fetchall()
+for sabor in sabores:
+    with col1:
+        st.subheader(sabor)
+    with col2:
+        mydb.connect()
+        cursor.execute(f"SELECT id FROM sabores WHERE nome = {sabor}")
+        id_produto = str(cursor.fetchone()).translate(str.maketrans('', '', chars))
+        cursor.execute(f"SELECT quantidade FROM estoque WHERE id_produto = {id_produto}")
+        quantidade = str(cursor.fetchall()).translate(str.maketrans('', '', chars2)).split(',')
+        mydb.close()
+        st.subheader(quantidade)
 
-    cursor.execute('SELECT quantidade FROM estoque where id_produto = "2"')
-    resultado2 = cursor.fetchall()
-
-    cursor.execute('SELECT quantidade FROM estoque where id_produto = "3"')
-    resultado3 = cursor.fetchall()
-
-    cursor.execute('SELECT quantidade FROM estoque where id_produto = "4"')
-    resultado4 = cursor.fetchall()
-    chars = "'),([]"
-    var1 = str(resultado1).translate(str.maketrans('', '', chars))
-    var2 = str(resultado2).translate(str.maketrans('', '', chars))
-    var3 = str(resultado3).translate(str.maketrans('', '', chars))
-    var4 = str(resultado4).translate(str.maketrans('', '', chars))
-    st.subheader(f'{var1}')
-    st.subheader(f'{var2}')
-    st.subheader(f'{var3}')
-    st.subheader(f'{var4}')
+# with col1:
+#     st.subheader('Ninho')
+#     st.subheader('Nesquik')
+#     st.subheader('Ferrero Rocher')
+#     st.subheader('Prestigio')
+#
+# with col2:
+#     cursor.execute('SELECT quantidade FROM estoque where id_produto = "1"')
+#     resultado1 = cursor.fetchall()
+#
+#     cursor.execute('SELECT quantidade FROM estoque where id_produto = "2"')
+#     resultado2 = cursor.fetchall()
+#
+#     cursor.execute('SELECT quantidade FROM estoque where id_produto = "3"')
+#     resultado3 = cursor.fetchall()
+#
+#     cursor.execute('SELECT quantidade FROM estoque where id_produto = "4"')
+#     resultado4 = cursor.fetchall()
+#     chars = "'),([]"
+#     var1 = str(resultado1).translate(str.maketrans('', '', chars))
+#     var2 = str(resultado2).translate(str.maketrans('', '', chars))
+#     var3 = str(resultado3).translate(str.maketrans('', '', chars))
+#     var4 = str(resultado4).translate(str.maketrans('', '', chars))
+#     st.subheader(f'{var1}')
+#     st.subheader(f'{var2}')
+#     st.subheader(f'{var3}')
+#     st.subheader(f'{var4}')
 
 
