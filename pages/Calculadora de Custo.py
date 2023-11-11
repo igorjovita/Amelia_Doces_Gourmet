@@ -106,3 +106,5 @@ if submit:
         st.write(f'Custo de cada pacote  = R$ {resultado_receita:.2f}'.replace('.', ','))
         st.write(f'Lucro venda para Local = R$ {lucro_local:.2f}'.replace('.', ','))
         st.write(f'Lucro venda para Turista = R$ {lucro_turista:.2f}'.replace('.', ','))
+
+        
