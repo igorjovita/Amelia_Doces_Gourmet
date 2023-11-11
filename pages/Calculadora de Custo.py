@@ -13,19 +13,20 @@ st.write('''<style>
 
 
 st.title('Amélia Doces Gourmet')
-st.subheader('Calculadora de Custos')
+st.header('Calculadora de Custos')
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    valor_milho = st.text_input(label='Valor do Milho', value=0)
-    valor_ninho = st.text_input(label='Valor do Leite em pó', value=0)
-    quantidade = st.text_input(label='Rendimento da Receita', value=10)
+    st.subheader('Valores')
+    valor_milho = st.text_input(label='Milho', value=0)
+    valor_ninho = st.text_input(label='Leite em pó', value=0)
+    quantidade = st.text_input(label='Rendimento', value=10)
 with col2:
-    valor_açucar = st.text_input(label='Valor do Açucar', value=0)
-    valor_local = st.text_input(label='Valor de venda para Locais', value=10)
+    valor_açucar = st.text_input(label='Açucar', value=0)
+    valor_local = st.text_input(label='Venda Locais', value=10)
 with col3:
-    valor_chocolate = st.text_input(label='Valor do Chocolate', value=0)
-    valor_turista = st.text_input(label='Valor de venda para Turistas', value=12)
+    valor_chocolate = st.text_input(label='Chocolate', value=0)
+    valor_turista = st.text_input(label='Venda Turistas', value=12)
 
 
 
@@ -33,23 +34,25 @@ with col3:
 with st.expander('Gramatura da Embalagem'):
     col1, col2, col3 = st.columns(3)
     with col1:
-        gramatura_milho = st.text_input(label='Gramatura do Milho', value=500)
-        gramatura_ninho = st.text_input(label='Gramatura do Leite em pó', value=400)
+        st.subheader('Quantidade da Embalagem')
+        gramatura_milho = st.text_input(label='Milho', value=500)
+        gramatura_ninho = st.text_input(label='Leite em pó', value=400)
     with col2:
-        gramatura_açucar = st.text_input(label='Gramatura do Açucar', value=5000)
+        gramatura_açucar = st.text_input(label='Açucar', value=5000)
     with col3:
-        gramatura_chocolate = st.text_input(label='Gramatura do Chocolate', value=1010)
+        gramatura_chocolate = st.text_input(label='Chocolate', value=1010)
 
 
 with st.expander('Gramatura da receita'):
+    st.subheader('Quantidade na Receita')
     col1, col2, col3 = st.columns(3)
     with col1:
-        usado_milho = st.text_input(label='Milho na Receita', value=250)
-        usado_ninho = st.text_input(label='Leite em pó na Receita', value=200)
+        usado_milho = st.text_input(label='Milho', value=250)
+        usado_ninho = st.text_input(label='Leite em pó', value=200)
     with col2:
-        usado_açucar = st.text_input(label='Açucar na Receita', value=400)
+        usado_açucar = st.text_input(label='Açucar', value=400)
     with col3:
-        usado_chocolate = st.text_input(label='Chocolate na Receita', value=330)
+        usado_chocolate = st.text_input(label='Chocolate', value=330)
 
 
 submit = st.button('Calcular')
