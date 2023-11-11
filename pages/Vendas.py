@@ -27,13 +27,13 @@ with col3:
     chars = "'),([]"
     lista = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
     sabor = st.selectbox('Sabor:', options=lista)
-
+    pagamento = st.selectbox('Forma de Pagamento', options=['Pix', 'Dinheiro', 'Debito', 'Credito'])
     cursor.execute(f"Select id from sabores where nome = '{sabor}'")
     id_produto = str(cursor.fetchone()).translate(str.maketrans('', '', chars))
 
 if st.button('Lançar Venda'):
     mydb.connect()
-    cursor.execute("insert into saida(id_produto, quantidade, data_saida, valor, tipo) values (%s, %s, %s, %s, %s)",
-                   (id_produto, quantidade, data, valor, tipo))
+    cursor.execute("insert into saida(id_produto, quantidade, data_saida, valor, tipo, pagamento) values (%s, %s, %s, %s, %s, %s)",
+                   (id_produto, quantidade, data, valor, tipo,pagamento))
     mydb.commit()
     st.success('Venda lançada no sistema')
