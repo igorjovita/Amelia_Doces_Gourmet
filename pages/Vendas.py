@@ -15,11 +15,11 @@ cursor = mydb.cursor(buffered=True)
 st.title('Venda')
 col1, col2, col3 = st.columns(3)
 with col1:
-    data = st.date_input('Data da Venda', format='DD/MM/YYYY')
-    quantidade = st.text_input('Quantidade Vendida')
+    data = st.date_input('Data', format='DD/MM/YYYY')
+    quantidade = st.text_input('Quantidade')
 
 with col2:
-    tipo = st.selectbox('Tipo:', ['Turista', 'Local'])
+    tipo = st.selectbox('Tipo:', ['', 'Prova', 'Turista', 'Feira', 'Local'])
     valor = st.text_input('Valor:')
 
 with col3:
@@ -27,7 +27,7 @@ with col3:
     chars = "'),([]"
     lista = str(cursor.fetchall()).translate(str.maketrans('', '', chars)).split()
     sabor = st.selectbox('Sabor:', options=lista)
-    pagamento = st.selectbox('Forma de Pagamento', options=['Pix', 'Dinheiro', 'Debito', 'Credito'])
+    pagamento = st.selectbox('Forma de Pagamento', options=['','Pix', 'Dinheiro', 'Debito', 'Credito'])
     cursor.execute(f"Select id from sabores where nome = '{sabor}'")
     id_produto = str(cursor.fetchone()).translate(str.maketrans('', '', chars))
 
